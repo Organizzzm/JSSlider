@@ -19,15 +19,31 @@ settings.wrapper.onmouseout = function(){
 	startSlideShow();
 }
 settings.decrButton.onclick = function(){
-	clearInterval(settings.fadeActiveSlidesID);
-	settings.side = "decr";
-	transitionSlides();
+	if(settings.loadSlide == true){
+		clearInterval(settings.fadeActiveSlidesID);
+		settings.side = "decr";
+		transitionSlides();
+	}
 }
 settings.incrButton.onclick = function(){
-	clearInterval(settings.fadeActiveSlidesID);
-	settings.side = "incr";
-	transitionSlides();
+	console.log(settings.loadSlide);
+	if(settings.loadSlide == true){
+		clearInterval(settings.fadeActiveSlidesID);
+		settings.side = "incr";
+		transitionSlides();
+	}
+	
 }
+
+
+
+window.addEventListener('focus', startSlideShow);    
+window.addEventListener('blur', stopSlideShow);
+
+
+
+
+
 
 function initializeSettings(){
 	settings.wrapper = document.getElementById(settings.wrapperID) || null;
@@ -37,6 +53,7 @@ function initializeSettings(){
 	settings.currentSlide = 0;
 	settings.side = "incr";
 	settings.fadeActiveSlidesID;
+	settings.loadSlide = true;
 }
 
 function initializeSlideShow(){	
@@ -56,6 +73,7 @@ function stopSlideShow(){
 }
 
 function transitionSlides(){
+	settings.loadSlide = false;
 	var currentSlide = settings.slides[settings.slideIndex];
 	
 	if(settings.side == "incr"){
@@ -89,6 +107,7 @@ function transitionSlides(){
 	      currentSlide.style.opacity = 0;
 	      nextSlide.style.opacity = 1; 
 	      clearInterval(settings.fadeActiveSlidesID);
+	      settings.loadSlide = true;
 	    }        
   	}
 }

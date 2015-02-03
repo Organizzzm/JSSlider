@@ -1,0 +1,23 @@
+#jsSliderWarp {
+	background-color: lightgray;
+	position: relative;
+	margin: auto;
+	height: 300px;
+	width: 600px;
+} 
+
+.slide{
+	position: absolute;
+	height: 300px;
+	width: 600px;
+}
+
+span{
+	padding: 20px;
+	margin: auto;
+	cursor: pointer;
+}
+
+.buttons{
+	position: absolute;
+}
